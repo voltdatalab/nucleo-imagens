@@ -1,0 +1,120 @@
+<style>
+meter{color: red}
+</style>
+
+  <div id="tool-list">
+    <div class="form-inline">
+			<div class="main-search-holder">
+      <div class="form-group">
+        <input id="toolSearch" type="text" placeholder="Busque por algo" class="search form-control" style="margin-bottom:10px"/>
+        <br />
+        <span class="sort btn btn-default" data-sort="nome">Organizar por nome</span>
+        <span class="sort btn btn-default" data-sort="tipo">Organizar por categoria</span>
+      </div>
+		</div>
+    </div>
+<br />
+
+		<script type="text/javascript">
+		function reply_click(element) {
+			document.getElementById('toolSearch').value = element.getAttribute('data-product-name');
+		}
+		</script>
+    <ul class="list">
+			{% for info in site.data.redes %}
+      <li class="max_list">
+        <h5 class="tipo tipo_card {{tool.tipo}}" style="border: 1px solid {{info.color}};color:{{info.color}};font-weight:700">{{info.tipo}}</h5>
+        <h2 class="nome" style="color:{{info.color}}">{{ info.nome }}</h2>
+        <p><small class="nome">{{ info.profissao }}  &bull;	<a href="{{ info.link }}" class="link" target="_blank"> <i class="fas fa-link" aria-hidden="true"></i></a></small></p>
+
+        <small>Na escala de 1 (muito raro) a 5 (muito frequente), qual o uso de redes sociais</small>
+
+          <br /><br />
+          <label for="geral"><i class="fas fa-mobile-alt"></i></label>&nbsp; <meter id="geral" value="{{info.geral}}" min="1" max="5"></meter>&nbsp;&nbsp;&nbsp;&nbsp;
+          <label for="facebook"><i class="fab fa-facebook"></i> </label> <meter id="facebook" value="{{info.facebook}}" min="1" max="5"></meter><br />
+          <label for="twitter"><i class="fab fa-twitter"></i> </label> <meter id="twitter" value="{{info.twitter}}" min="1" max="5"></meter>&nbsp;&nbsp;&nbsp;&nbsp;
+          <label for="instagram"><i class="fab fa-instagram"></i> </label> <meter id="instagram" value="{{info.instagram}}" min="1" max="5"></meter><br />
+          <label for="tiktok"><i class="fab fa-tiktok"></i> </label> <meter id="tiktok" value="{{info.tiktok}}" min="1" max="5"></meter>&nbsp;&nbsp;&nbsp;&nbsp;
+          <label for="linkedin"><i class="fab fa-linkedin"></i> </label> <meter id="linkedin" value="{{info.linkedin}}" min="1" max="5"></meter><br />
+          <label for="whatsapp"><i class="fab fa-whatsapp"></i> </label> <meter id="whatsapp" value="{{info.whatsapp}}" min="1" max="5"></meter>&nbsp;&nbsp;&nbsp;&nbsp;
+          <label for="telegram"><i class="fab fa-telegram"></i> </label> <meter id="telegram" value="{{info.telegram}}" min="1" max="5"></meter>
+
+          <br /><br />
+          <i class="fas fa-hand-pointer"></i> <em><small>Clique nas cores para expandir</small></em>
+
+
+
+        <div class="accordion">
+          <div class="option">
+            <input type="checkbox" id="toggle{{info.id_frustracao}}" class="toggle" />
+            <label class="titleaco frustracao" for="toggle{{info.id_frustracao}}">Frustração
+            </label>
+            <div class="contentaco frustracao">
+              <p style="color:#1c1d36 !important">{{ info.frustracao }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="option">
+            <input type="checkbox" id="toggle{{info.id_recompensa}}" class="toggle" />
+            <label class="titleaco recompensa" for="toggle{{info.id_recompensa}}">Recompensa
+            </label>
+            <div class="contentaco recompensa">
+              <p style="color:#1c1d36 !important">{{ info.recompensa }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="option">
+            <input type="checkbox" id="toggle{{info.id_excessos}}" class="toggle" />
+            <label class="titleaco excessos" for="toggle{{info.id_excessos}}">Dica para evitar excessos
+            </label>
+            <div class="contentaco excessos">
+              <p style="color:#1c1d36 !important">{{ info.dica_excessos }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="option">
+            <input type="checkbox" id="toggle{{info.id_seguranca}}" class="toggle" />
+            <label class="titleaco seguranca" for="toggle{{info.id_seguranca}}">Dica de segurança
+            </label>
+            <div class="contentaco seguranca">
+              <p style="color:#1c1d36 !important">{{ info.dica_seguranca }}</p>
+            </div>
+          </div>
+        </div>
+
+      </li>
+			{% endfor %}
+    </ul>
+</div>
+<script>
+var options = {
+  valueNames: ['nome', 'tipo', 'frustracao']
+};
+var hackerList = new List('tool-list', options);
+
+// Assigning references to the filter buttons
+var filterTagButton = document.getElementById("filter");
+var removeFiltersButton = document.getElementById("removeFilters");
+
+// When the filter button is clicked. The list is filtered by calling the filter function of the list object and passing in a function that accepts the list items.
+filterTagButton.addEventListener("click", function() {
+  hackerList.filter(function(item) {
+    if (item.values().Desc == "data") {
+      return true;
+    } else {
+      return false;
+    }
+  }); // Only items that have Edmonton as the Desc.
+});
+
+// When the remove filter button is clicked, the filters are removed by calling the filter function once again with no parameters.
+removeFiltersButton.addEventListener("click", function() {
+  hackerList.filter();
+});
+</script>
