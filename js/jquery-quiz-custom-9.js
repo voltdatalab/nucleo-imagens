@@ -71,7 +71,7 @@
                 a("#quiz-gameover-response").html(b), a("#quiz-counter").hide(), a("#questions").hide(), a(l).show()
             },
             finish: function() {
-                e.$el.removeClass("quiz-questions-state").addClass("quiz-results-state"), a(".active-question").hide().removeClass("active-question"), a("#quiz-counter").hide(), a("#quiz-response").hide(), a("#quiz-finish-btn").hide(), a("#quiz-next-btn").hide(), a("#quiz-restart-btn").show(), a(k).show(), a("#quiz-results").html(q.join('') + "<br>Acertei " + n + " / " + g + " perguntas no #quizdonucleo - www.nucleo.jor.br/quiz"), "function" == typeof e.options.finishCallback && e.options.finishCallback()
+                e.$el.removeClass("quiz-questions-state").addClass("quiz-results-state"), a(".active-question").hide().removeClass("active-question"), a("#quiz-counter").hide(), a("#quiz-response").hide(), a("#quiz-finish-btn").hide(), a("#quiz-next-btn").hide(), a("#quiz-restart-btn").show(), a(k).show(), a("#quiz-results").html(q.join('') + "<br>Acertei " + n + " / " + g + " perguntas no #quizdonucleo - www.nucle.ooo"), "function" == typeof e.options.finishCallback && e.options.finishCallback()
             },
             restart: function() {
                 q=[], e.methods.reset(), e.$el.addClass("quiz-questions-state"), a("#questions").show(), a("#quiz-counter").show(), a(".question-container:first-child").show().addClass("active-question"), e.methods.updateCounter()
